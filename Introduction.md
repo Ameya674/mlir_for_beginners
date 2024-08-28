@@ -34,7 +34,7 @@ flowchart LR
     end
 
     subgraph Hardware_Devices
-        direction TB
+        direction LR
         CPU["CPU"]
         GPU["GPU"]
         FPGA["FPGA"]
