@@ -78,6 +78,9 @@ MLIR lower languages in the form of dialects(which is basically another language
    : !llvm.float
 ```
 ### Operation Structure
+
+All dialects, which are just a collection of operations are written in the following syntax. 
+
 ```bash
 %res:2 = "mydialect.morph"(%input#3) { some_attribute = true, other_attribute = 1.5 } \
        : (!mydialect<"custom_type">) -> (!mydialect<"other_type">, !mydialect<"other_type">) \
