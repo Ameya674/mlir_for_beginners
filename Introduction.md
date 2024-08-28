@@ -26,6 +26,7 @@ flowchart LR
     end
 
     subgraph Backends
+        direction LR
         LLVM_IR["LLVM IR"]
         CIRCT["CIRCT (FIRRTL)"]
         SPIRV["SPIR-V for GPU"]
