@@ -97,11 +97,11 @@ All dialects, which are just a collection of operations are written in the follo
 ### IR Structure
 ```mermaid
 graph TD
-    subgraph Operation1[Operation]
-        subgraph Region1[Region]
+    subgraph Op1[Operation]
+        subgraph Reg1[Region]
             subgraph Block1[Block]
-                subgraph Operation2[Operation]
-                    subgraph Region2[Region]
+                subgraph Op2[Operation]
+                    subgraph Reg2[Region]
                         subgraph Block2[Block]
                         end
                         subgraph Block3[Block]
@@ -109,7 +109,7 @@ graph TD
                         subgraph Block4[Block]
                         end
                     end
-                    subgraph Region3[Region]
+                    subgraph Reg3[Region]
                         subgraph Block5[Block]
                         end
                     end
@@ -118,12 +118,12 @@ graph TD
         end
     end
 
-    style Operation1 fill:#FF6666,stroke:#333,stroke-width:2px
-    style Region1 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Op1 fill:#FF6666,stroke:#333,stroke-width:2px
+    style Reg1 fill:#FFCC66,stroke:#333,stroke-width:2px
     style Block1 fill:#66CC66,stroke:#333,stroke-width:2px
-    style Operation2 fill:#FF6666,stroke:#333,stroke-width:2px
-    style Region2 fill:#FFCC66,stroke:#333,stroke-width:2px
-    style Region3 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Op2 fill:#FF6666,stroke:#333,stroke-width:2px
+    style Reg2 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Reg3 fill:#FFCC66,stroke:#333,stroke-width:2px
     style Block2 fill:#66CC66,stroke:#333,stroke-width:2px
     style Block3 fill:#66CC66,stroke:#333,stroke-width:2px
     style Block4 fill:#66CC66,stroke:#333,stroke-width:2px
