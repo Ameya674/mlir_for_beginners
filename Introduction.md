@@ -6,7 +6,7 @@ MLIR (Multi-Level Intermediate Representation) is a framework in the LLVM projec
 
 It can be used to create compiler frontends as well as backends.
 
-```bash
+```mermaid
 flowchart LR
     subgraph Applications/Compilers
         HLS_Chisel["HLS/Chisel"]
@@ -46,6 +46,5 @@ flowchart LR
     TensorFlow --> MLIR
     MLIR --> Backends
     Backends --> Hardware_Devices
-
 ```
 
