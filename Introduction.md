@@ -9,6 +9,7 @@ It can be used to create compiler frontends as well as backends.
 ```mermaid
 flowchart LR
     subgraph Applications/Compilers
+        direction TB
         HLS_Chisel["HLS/Chisel"]
         ONNX["ONNX"]
         PyTorch["PyTorch"]
@@ -16,16 +17,17 @@ flowchart LR
     end
 
     subgraph MLIR
-        subgraph Dialects
-            affine["affine"]
-            arith["arith"]
-            scf["scf"]
-        end
+        direction TB
+        Dialects["Dialects"]
+        affine["affine"]
+        arith["arith"]
+        scf["scf"]
         Dialect["Dialect"]
         Shared_Optimizations["Shared Optimizations"]
     end
 
     subgraph Backends
+        direction TB
         LLVM_IR["LLVM IR"]
         CIRCT["CIRCT (FIRRTL)"]
         SPIRV["SPIR-V for GPU"]
@@ -33,6 +35,7 @@ flowchart LR
     end
 
     subgraph Hardware_Devices
+        direction TB
         CPU["CPU"]
         GPU["GPU"]
         FPGA["FPGA"]
@@ -46,5 +49,6 @@ flowchart LR
     TensorFlow --> MLIR
     MLIR --> Backends
     Backends --> Hardware_Devices
+
 ```
 
