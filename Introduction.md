@@ -94,3 +94,38 @@ All dialects, which are just a collection of operations are written in the follo
 # -> (... , ...)          : Output type specification (two output types)
 # loc(...)                : Location information (source file and position)
 ```
+### IR Structure
+```mermaid
+graph TD
+    subgraph Operation1[Operation]
+        subgraph Region1[Region]
+            subgraph Block1[Block]
+                subgraph Operation2[Operation]
+                    subgraph Region2[Region]
+                        subgraph Block2[Block]
+                        end
+                        subgraph Block3[Block]
+                        end
+                        subgraph Block4[Block]
+                        end
+                    end
+                    subgraph Region3[Region]
+                        subgraph Block5[Block]
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    style Operation1 fill:#FF6666,stroke:#333,stroke-width:2px
+    style Region1 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Block1 fill:#66CC66,stroke:#333,stroke-width:2px
+    style Operation2 fill:#FF6666,stroke:#333,stroke-width:2px
+    style Region2 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Region3 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Block2 fill:#66CC66,stroke:#333,stroke-width:2px
+    style Block3 fill:#66CC66,stroke:#333,stroke-width:2px
+    style Block4 fill:#66CC66,stroke:#333,stroke-width:2px
+    style Block5 fill:#66CC66,stroke:#333,stroke-width:2px
+```
