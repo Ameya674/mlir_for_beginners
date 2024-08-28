@@ -97,25 +97,35 @@ All dialects, which are just a collection of operations are written in the follo
 ### IR Structure
 ```mermaid
 graph TD
-    A[Operation1] --> B[Region1]
-    B --> C[Block1]
-    C --> D[Operation2]
-    D --> E[Region2]
-    D --> F[Region3]
-    E --> G[Block2]
-    E --> H[Block3]
-    E --> I[Block4]
-    F --> J[Block5]
+    subgraph Op1[Operation]
+        subgraph Reg1[Region]
+            subgraph Block1[Block]
+                subgraph Op2[Operation]
+                    subgraph Reg2[Region]
+                        subgraph Block2[Block]
+                        end
+                        subgraph Block3[Block]
+                        end
+                        subgraph Block4[Block]
+                        end
+                    end
+                    subgraph Reg3[Region]
+                        subgraph Block5[Block]
+                        end
+                    end
+                end
+            end
+        end
+    end
 
-    style A fill:#FF6666,stroke:#333,stroke-width:2px
-    style B fill:#FFCC66,stroke:#333,stroke-width:2px
-    style C fill:#66CC66,stroke:#333,stroke-width:2px
-    style D fill:#FF6666,stroke:#333,stroke-width:2px
-    style E fill:#FFCC66,stroke:#333,stroke-width:2px
-    style F fill:#FFCC66,stroke:#333,stroke-width:2px
-    style G fill:#66CC66,stroke:#333,stroke-width:2px
-    style H fill:#66CC66,stroke:#333,stroke-width:2px
-    style I fill:#66CC66,stroke:#333,stroke-width:2px
-    style J fill:#66CC66,stroke:#333,stroke-width:2px
-
+    style Op1 fill:#FF6666,stroke:#333,stroke-width:2px
+    style Reg1 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Block1 fill:#66CC66,stroke:#333,stroke-width:2px
+    style Op2 fill:#FF6666,stroke:#333,stroke-width:2px
+    style Reg2 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Reg3 fill:#FFCC66,stroke:#333,stroke-width:2px
+    style Block2 fill:#66CC66,stroke:#333,stroke-width:2px
+    style Block3 fill:#66CC66,stroke:#333,stroke-width:2px
+    style Block4 fill:#66CC66,stroke:#333,stroke-width:2px
+    style Block5 fill:#66CC66,stroke:#333,stroke-width:2px
 ```
