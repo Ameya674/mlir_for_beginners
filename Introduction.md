@@ -78,17 +78,16 @@ MLIR lower languages in the form of dialects(which is basically another language
    : !llvm.float
 ```
 ### Operation Structure
-```mermaid
-graph TD
-    A["%res:2 = 'mydialect.morph'"] --> B("(%input#3)")
-    A --> C{"Attributes"}
-    C --> D[some_attribute = true]
-    C --> E[other_attribute = 1.5]
-    A --> F["Input Type:<br>!mydialect<'custom_type'>"]
-    A --> G["Output Types:<br>!mydialect<'other_type'>,<br>!mydialect<'other_type'>"]
-    A --> H["Location:<br>callsite('foo' at 'mysource.cc':10:8)"]
+```bash
+%res:2 = "mydialect.morph"(%input#3) { some_attribute = true, other_attribute = 1.5 } \
+       : (!mydialect<"custom_type">) -> (!mydialect<"other_type">, !mydialect<"other_type">) \
+       loc(callsite("foo" at "mysource.cc":10:8))
 
-    classDef default fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef attr fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5;
-    class C,D,E attr;
+# %res:2                  : Name of the result (2 values returned)
+# "mydialect.morph"       : Op Id (mydialect is dialect prefix, morph is operation name)
+# (%input#3)              : Argument to the operation
+# { ... }                 : List of attributes (constant named arguments)
+# (!mydialect<"custom_type">) : Input type specification
+# -> (... , ...)          : Output type specification (two output types)
+# loc(...)                : Location information (source file and position)
 ```
