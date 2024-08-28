@@ -50,3 +50,30 @@ flowchart LR
     Backends --> Hardware_Devices
 ```
 
+### What makes MLIR special?
+
+#### Multilevel IR
+Most compilers convert high-level programming languages into an Intermediate Representation (IR), like LLVM IR. However, this process often misses out on domain-specific optimizations and can make custom optimizations challenging. MLIR (Multi-Level Intermediate Representation) addresses this by offering multiple levels of IR. It gradually translates high-level code down through these levels, allowing for domain-specific and high-level optimizations at each stage. This results in a more optimized and efficient IR tailored to specific needs.
+
+But this concept isn't new and can be implemented with any tool or language and not just MLIR. 
+
+#### Same syntax for defining all dialects
+MLIR lower languages in the form of dialects(which is basically another language or IR) which consists of operations where you can define your own operations. All these dialects have the same syntax, which makes writing multiple dialects super easy. This is what makes MLIR really powerful.
+
+##### Tensorflow
+```bash
+%x = "tf.Conv2d"(%input, %filter)
+   {strides: [1,1,2,1], padding: "SAME", dilations: [2,1,1,1]}
+   : (tensor<*xf32>, tensor<*xf32>) -> tensor<*xf32>
+```
+##### XLA HLO
+```bash
+%m = "xla.AllToAll"(%z)
+   {split_dimension: 1, concat_dimension: 0, split_count: 2}
+   : (memref<300x200x32xf32>) -> memref<600x100x32xf32>
+```
+##### LLVM IR
+```bash
+%f = llvm.add %a, %b
+   : !llvm.float
+```
