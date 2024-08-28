@@ -95,6 +95,11 @@ All dialects, which are just a collection of operations are written in the follo
 # loc(...)                : Location information (source file and position)
 ```
 ### IR Structure
+Operation - A task or function.
+Region - A group of operations in a scope, not defined in MLIR but exists only to understand the structure of the program.
+Block - Sequence of operations. 
+
+This structure is recursive in nature.
 ```mermaid
 graph TD
     subgraph Op1[Operation]
