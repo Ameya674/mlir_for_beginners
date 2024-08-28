@@ -77,3 +77,18 @@ MLIR lower languages in the form of dialects(which is basically another language
 %f = llvm.add %a, %b
    : !llvm.float
 ```
+### Operation Structure
+```mermaid
+graph TD
+    A["%res:2 = 'mydialect.morph'"] --> B("(%input#3)")
+    A --> C{"Attributes"}
+    C --> D[some_attribute = true]
+    C --> E[other_attribute = 1.5]
+    A --> F["Input Type:<br>!mydialect<'custom_type'>"]
+    A --> G["Output Types:<br>!mydialect<'other_type'>,<br>!mydialect<'other_type'>"]
+    A --> H["Location:<br>callsite('foo' at 'mysource.cc':10:8)"]
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef attr fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5;
+    class C,D,E attr;
+```
