@@ -26,6 +26,7 @@ flowchart LR
     end
 
     subgraph Backends
+        direction TB
         LLVM_IR["LLVM IR"]
         CIRCT["CIRCT (FIRRTL)"]
         SPIRV["SPIR-V for GPU"]
@@ -33,6 +34,7 @@ flowchart LR
     end
 
     subgraph Hardware_Devices
+        direction TB
         CPU["CPU"]
         GPU["GPU"]
         FPGA["FPGA"]
