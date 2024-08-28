@@ -137,3 +137,35 @@ graph TD
     style Block5 fill:#66CC66,stroke:#333,stroke-width:2px
 ```
 ## Toy Tutorial
+
+graph TD
+    A[llvm-project]
+    A --> B[llvm]
+    A --> C[clang]
+    A --> D[clang-tools-extra]
+    A --> E[mlir]
+    A --> F[libc]
+    A --> G[lld]
+    A --> H[lldb]
+    A --> I[polly]
+    A --> J[flang]
+    A --> K[compiler-rt]
+    A --> L[openmp]
+    A --> M[utils]
+    A --> N[test-suite]
+    B --> B1[include]
+    B --> B2[lib]
+    B --> B3[tools]
+    B --> B4[test]
+    C --> C1[include]
+    C --> C2[lib]
+    C --> C3[tools]
+    C --> C4[test]
+    E --> E1[include]
+    E --> E2[lib]
+    E --> E3[test]
+    E --> E4[docs]
+    M --> M1[build-llvm.py]
+    M --> M2[git]
+    M --> M3[update\_llc\_test\_checks.py]
+
