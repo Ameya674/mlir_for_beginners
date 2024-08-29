@@ -247,6 +247,22 @@ graph TD
   bin --> toyc-ch6
   bin --> toyc-ch7
 
+  tools_mlir["mlir"]
+  tools_mlir_examples["examples"]
+  tools_mlir_examples_toy["toy"]
+  tools_mlir_examples_toy_ChX["ChX"]
+  tools_mlir_examples_toy_ChX_include["include"]
+  tools_mlir_examples_toy_ChX_include_toy["toy"]
+  tools_mlir_examples_toy_ChX_include_toy_include_files["include_files"]
+
+  tools --> tools_mlir
+  tools_mlir --> tools_mlir_examples
+  tools_mlir_examples --> tools_mlir_examples_toy
+  tools_mlir_examples_toy --> tools_mlir_examples_toy_ChX
+  tools_mlir_examples_toy_ChX --> tools_mlir_examples_toy_ChX_include
+  tools_mlir_examples_toy_ChX_include --> tools_mlir_examples_toy_ChX_include_toy
+  tools_mlir_examples_toy_ChX_include_toy --> tools_mlir_examples_toy_ChX_include_toy_include_files
+
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
   class toy_examples_box default;
