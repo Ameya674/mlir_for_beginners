@@ -144,27 +144,19 @@ This tutorial runs through the implementation of a basic toy language on top of 
 graph TD
   llvm_project["llvm_project"]
   mlir["mlir"]
+  benchmark["benchmark"]
+  cmake["cmake"]
   examples["examples"]
-  toy_examples["toy"]
-  toy_test["Toy"]
+  lib["lib"]
+  python["python"]
+  test["test"]
+  unittests["unittests"]
+  docs["docs"]
+  include["include"]
+  tools["tools"]
+  utils["utils"]
 
   llvm_project --> mlir
-
-  subgraph mlir_box[ ]
-    direction TB
-    benchmark
-    cmake
-    examples
-    lib
-    python
-    test
-    unittests
-    docs
-    include
-    tools
-    utils
-  end
-
   mlir --> benchmark
   mlir --> cmake
   mlir --> examples
@@ -177,44 +169,7 @@ graph TD
   mlir --> tools
   mlir --> utils 
 
-  subgraph toy_examples_box[ ]
-    direction TB
-    Ch1
-    Ch2
-    Ch3
-    Ch4
-    Ch5
-    Ch6
-    Ch7
-    CMakeLists
-    README
-  end
-
-  examples --> toy_examples
-  toy_examples --> toy_examples_box
-
-  subgraph test_box[ ]
-    direction TB
-    Examples
-  end
-
-  test --> test_box
-  test_box --> toy_test
-  toy_test --> toy_test_box
-
-  subgraph toy_test_box[ ]
-    direction TB
-    Ch1
-    Ch2
-    Ch3
-    Ch4
-    Ch5
-    Ch6
-    Ch7
-  end
-
-  toy_test --> toy_test_box
-
+  
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
   class toy_examples_box default;
