@@ -181,7 +181,7 @@ graph TD
     README
   end
 
-  examples --> toy_box
+  toy --> toy_box
 
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
