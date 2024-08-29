@@ -79,8 +79,14 @@ graph TD
   llvm_project/mlir/test/Examples/Toy/Ch1["llvm_project/mlir/test/Examples/Toy/Ch1"]
 
   ast.toy["ast.toy"]
-  empty.toy["ast.toy"]
+  empty.toy["empty.toy"]
 
   llvm_project/mlir/test/Examples/Toy/Ch1 --> ast.toy
   llvm_project/mlir/test/Examples/Toy/Ch1 --> empty.toy
+```
+
+### The source code in the ast.toy file is converted into its AST using the given command 
+
+```bash
+<path_to_toyc-ch1> <path_to_ast.toy> -emit=ast
 ```
