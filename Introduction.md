@@ -144,6 +144,11 @@ This tutorial runs through the implementation of a basic toy language on top of 
 graph TD
   llvm_project["llvm_project"]
   mlir["mlir"]
+  build["build"]
+
+  llvm_project --> mlir
+  llvm_project --> build
+
   benchmark["benchmark"]
   cmake["cmake"]
   examples["examples"]
@@ -156,7 +161,6 @@ graph TD
   tools["tools"]
   utils["utils"]
 
-  llvm_project --> mlir
   mlir --> benchmark
   mlir --> cmake
   mlir --> examples
@@ -167,7 +171,13 @@ graph TD
   mlir --> docs
   mlir --> include
   mlir --> tools
-  mlir --> utils 
+  mlir --> utils
+
+  bin["bin"]
+  tools["tools"]
+
+  build --> bin
+  build --> tools
 
   
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
