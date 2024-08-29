@@ -203,6 +203,13 @@ graph TD
   toy --> cmakelist.txt
   toy --> readme.md
 
+  Examples["Examples"]
+
+  test --> Examples
+
+  Toy["Toy"]
+
+  Examples --> Toy
 
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
