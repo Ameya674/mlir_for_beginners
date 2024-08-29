@@ -227,6 +227,8 @@ graph TD
   Toy --> Toy_Ch6
   Toy --> Toy_Ch7
 
+  mlir-tblgen["mlir-tblgen"]
+  mlir-opt["mlir-opt"]
   toyc-ch1["toyc-ch1"]
   toyc-ch2["toyc-ch2"]
   toyc-ch3["toyc-ch3"]
@@ -235,6 +237,8 @@ graph TD
   toyc-ch6["toyc-ch6"]
   toyc-ch7["toyc-ch7"]
 
+  bin --> mlir-tblgen
+  bin --> mlir-opt
   bin --> toyc-ch1
   bin --> toyc-ch2
   bin --> toyc-ch3
