@@ -255,7 +255,7 @@ graph TD
   tools_mlir_examples_toy_ChX_include_toy["toy"]
   tools_mlir_examples_toy_ChX_include_toy_include_files["include_files"]
 
-  tools --> tools_mlir
+  build_tools --> tools_mlir
   tools_mlir --> tools_mlir_examples
   tools_mlir_examples --> tools_mlir_examples_toy
   tools_mlir_examples_toy --> tools_mlir_examples_toy_ChX
