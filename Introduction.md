@@ -138,34 +138,36 @@ graph TD
 ```
 ## Toy Tutorial
 
-graph TD
-    A[llvm-project]
-    A --> B[llvm]
-    A --> C[clang]
-    A --> D[clang-tools-extra]
-    A --> E[mlir]
-    A --> F[libc]
-    A --> G[lld]
-    A --> H[lldb]
-    A --> I[polly]
-    A --> J[flang]
-    A --> K[compiler-rt]
-    A --> L[openmp]
-    A --> M[utils]
-    A --> N[test-suite]
-    B --> B1[include]
-    B --> B2[lib]
-    B --> B3[tools]
-    B --> B4[test]
-    C --> C1[include]
-    C --> C2[lib]
-    C --> C3[tools]
-    C --> C4[test]
-    E --> E1[include]
-    E --> E2[lib]
-    E --> E3[test]
-    E --> E4[docs]
-    M --> M1[build-llvm.py]
-    M --> M2[git]
-    M --> M3[update\_llc\_test\_checks.py]
+This tutorial runs through the implementation of a basic toy language on top of MLIR. 
 
+graph TD
+  llvm_project["llvm_project"]
+  mlir["mlir"]
+
+  llvm_project --> mlir
+
+  subgraph mlir
+    benchmark
+    cmake
+    examples
+    lib
+    python
+    test
+    unittests
+    docs
+    include
+    tools
+    utils
+  end
+
+  mlir --> benchmark
+  mlir --> cmake
+  mlir --> examples
+  mlir --> lib
+  mlir --> python
+  mlir --> test
+  mlir --> unittests
+  mlir --> docs
+  mlir --> include
+  mlir --> tools
+  mlir --> utils
