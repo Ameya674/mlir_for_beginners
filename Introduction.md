@@ -147,6 +147,7 @@ graph TD
   llvm_project --> mlir
 
   subgraph mlir
+    direction TB
     benchmark
     cmake
     examples
@@ -171,4 +172,8 @@ graph TD
   mlir --> include
   mlir --> tools
   mlir --> utils
+
+  classDef default fill:#fff,stroke:#333,stroke-width:2px;
+  class mlir,benchmark,cmake,examples,lib,python,test,unittests,docs,include,tools,utils default;
+
 ```
