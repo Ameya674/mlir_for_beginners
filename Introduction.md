@@ -145,11 +145,10 @@ graph TD
   llvm_project["llvm_project"]
   mlir["mlir"]
   examples["examples"]
-  toy_examples["Toy (examples)"]
-  toy_test["Toy (test/Examples)"]
+  toy["toy"]
+  test["test"]
 
   llvm_project --> mlir
-  mlir --> examples
 
   subgraph mlir_box[ ]
     direction TB
@@ -168,33 +167,10 @@ graph TD
 
   mlir --> mlir_box
 
-  subgraph toy_examples_box[ ]
-    direction TB
-    Ch1
-    Ch2
-    Ch3
-    Ch4
-    Ch5
-    Ch6
-    Ch7
-    CMakeLists
-    README
-  end
+  test --> examples
+  examples --> toy
 
-  examples --> toy_examples
-  toy_examples --> toy_examples_box
-
-  subgraph test_box[ ]
-    direction TB
-    Examples
-  end
-
-  mlir --> test
-  test --> test_box
-  test_box --> toy_test
-  toy_test --> toy_test_box
-
-  subgraph toy_test_box[ ]
+  subgraph toy_box[ ]
     direction TB
     Ch1
     Ch2
@@ -205,11 +181,9 @@ graph TD
     Ch7
   end
 
-  toy_test --> toy_test_box
+  toy --> toy_box
 
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
-  class toy_examples_box default;
-  class toy_test_box default;
-  class test_box default;
+  class toy_box default;
 ```
