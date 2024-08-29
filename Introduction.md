@@ -174,10 +174,10 @@ graph TD
   mlir --> utils
 
   bin["bin"]
-  tools["tools"]
+  build_tools["tools"]
 
   build --> bin
-  build --> tools
+  build --> build_tools
 
   
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
