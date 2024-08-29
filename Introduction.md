@@ -150,7 +150,6 @@ graph TD
 
   llvm_project --> mlir
   mlir --> examples
-  examples --> toy_examples
 
   subgraph mlir_box[ ]
     direction TB
@@ -182,9 +181,18 @@ graph TD
     README
   end
 
+  examples --> toy_examples
   toy_examples --> toy_examples_box
 
-  examples --> toy_examples
+  subgraph test_box[ ]
+    direction TB
+    Examples
+  end
+
+  mlir --> test
+  test --> test_box
+  test_box --> toy_test
+  toy_test --> toy_test_box
 
   subgraph toy_test_box[ ]
     direction TB
@@ -197,18 +205,7 @@ graph TD
     Ch7
   end
 
-  test --> toy_test_box
   toy_test --> toy_test_box
-
-  subgraph test_box[ ]
-    direction TB
-    Examples
-  end
-
-  mlir --> test
-  test --> test_box
-
-  test_box --> toy_test
 
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
