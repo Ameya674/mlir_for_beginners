@@ -175,7 +175,7 @@ graph TD
   mlir_subgraph --> tools
   mlir_subgraph --> utils
 
-  classDef default fill:#fff,stroke:#000,stroke-width:0px;
+  classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir,mlir_subgraph default;
 
 ```
