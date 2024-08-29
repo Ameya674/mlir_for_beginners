@@ -179,6 +179,9 @@ graph TD
   build --> bin
   build --> build_tools
 
+  toy["toy"]
+
+  examples --> toy
   
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
