@@ -192,7 +192,18 @@ graph TD
   Ch7["Ch7"]
   cmakelist.txt["CMakeLists.txt"]
   readme.md["README.md"]
-  
+
+  toy --> Ch1
+  toy --> Ch2
+  toy --> Ch3
+  toy --> Ch4
+  toy --> Ch5
+  toy --> Ch6
+  toy --> Ch7
+  toy --> cmakelist.txt
+  toy --> readme.md
+
+
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
   class toy_examples_box default;
