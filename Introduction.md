@@ -138,4 +138,52 @@ graph TD
 ```
 ## Toy Tutorial
 
-This tutorial runs through the implementation of a basic toy language on top of MLIR. Follow the installation file to build llvm from source and follow along. 
+This tutorial runs through the implementation of a basic toy language on top of MLIR. Follow the installation file to build llvm from source and follow along. But before that, here is the file structure of the toy tutorial to better understand the project.
+
+```mermaid
+graph TD
+  llvm_project["llvm_project"]
+  mlir["mlir"]
+  examples["examples"]
+  toy["toy"]
+
+  llvm_project --> mlir
+  mlir --> examples
+  examples --> toy
+
+  subgraph mlir_box[ ]
+    direction TB
+    benchmark
+    cmake
+    examples
+    lib
+    python
+    test
+    unittests
+    docs
+    include
+    tools
+    utils
+  end
+
+  mlir --> mlir_box
+
+  subgraph toy_box[ ]
+    direction TB
+    Ch1
+    Ch2
+    Ch3
+    Ch4
+    Ch5
+    Ch6
+    Ch7
+    CMakeLists
+    README
+  end
+
+  examples --> toy_box
+
+  classDef default fill:#fff,stroke:#000,stroke-width:2px;
+  class mlir_box default;
+  class toy_box default;
+```
