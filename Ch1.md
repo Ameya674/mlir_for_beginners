@@ -34,3 +34,14 @@ graph TD
   toy --> Lexer.h
   toy --> Parser.h
 ```
+
+**toyc.cpp -** The entry point for the compiler. Takes the file as input and calls the function to dump the AST present in the AST.h file. 
+**AST.h -** Calls the Lexer.h and Parser.h files to convert the source code into the AST.
+**AST.cpp -** Contains the code for the AST.h file.
+**Lexer.h -** Converts the source code into tokens.
+**Parser.h -** Uses the Recursive Descent Parser to create the AST.
+
+### Code instance of the toy language 
+
+```bash
+```
