@@ -211,6 +211,22 @@ graph TD
 
   Examples --> Toy
 
+  Toy_Ch1["Ch1"]
+  Toy_Ch2["Ch2"]
+  Toy_Ch3["Ch3"]
+  Toy_Ch4["Ch4"]
+  Toy_Ch5["Ch5"]
+  Toy_Ch6["Ch6"]
+  Toy_Ch7["Ch7"]
+
+  Toy --> Toy_Ch1
+  Toy --> Toy_Ch2
+  Toy --> Toy_Ch3
+  Toy --> Toy_Ch4
+  Toy --> Toy_Ch5
+  Toy --> Toy_Ch6
+  Toy --> Toy_Ch7
+
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
   class toy_examples_box default;
