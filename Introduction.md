@@ -146,7 +146,7 @@ graph TD
 
   llvm_project --> mlir
 
-  subgraph mlir
+  subgraph mlir_subgraph[ ]
     direction TB
     benchmark
     cmake
@@ -161,19 +161,20 @@ graph TD
     utils
   end
 
-  mlir --> benchmark
-  mlir --> cmake
-  mlir --> examples
-  mlir --> lib
-  mlir --> python
-  mlir --> test
-  mlir --> unittests
-  mlir --> docs
-  mlir --> include
-  mlir --> tools
-  mlir --> utils
+  mlir --> mlir_subgraph
 
-  classDef default fill:#fff,stroke:#333,stroke-width:2px;
-  class mlir,benchmark,cmake,examples,lib,python,test,unittests,docs,include,tools,utils default;
+  mlir_subgraph --> benchmark
+  mlir_subgraph --> cmake
+  mlir_subgraph --> examples
+  mlir_subgraph --> lib
+  mlir_subgraph --> python
+  mlir_subgraph --> test
+  mlir_subgraph --> unittests
+  mlir_subgraph --> docs
+  mlir_subgraph --> include
+  mlir_subgraph --> tools
+  mlir_subgraph --> utils
 
+  classDef default fill:#fff,stroke:#000,stroke-width:0px;
+  class mlir,mlir_subgraph default;
 ```
