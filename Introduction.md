@@ -138,44 +138,4 @@ graph TD
 ```
 ## Toy Tutorial
 
-This tutorial runs through the implementation of a basic toy language on top of MLIR. 
-```mermaid
-graph TD
-  llvm_project["llvm_project"]
-  mlir["mlir"]
-
-  llvm_project --> mlir
-
-  subgraph mlir_subgraph[ ]
-    direction TB
-    benchmark
-    cmake
-    examples
-    lib
-    python
-    test
-    unittests
-    docs
-    include
-    tools
-    utils
-  end
-
-  mlir --> mlir_subgraph
-
-  mlir_subgraph --> benchmark
-  mlir_subgraph --> cmake
-  mlir_subgraph --> examples
-  mlir_subgraph --> lib
-  mlir_subgraph --> python
-  mlir_subgraph --> test
-  mlir_subgraph --> unittests
-  mlir_subgraph --> docs
-  mlir_subgraph --> include
-  mlir_subgraph --> tools
-  mlir_subgraph --> utils
-
-  classDef default fill:#fff,stroke:#000,stroke-width:2px;
-  class mlir,mlir_subgraph default;
-
-```
+This tutorial runs through the implementation of a basic toy language on top of MLIR. Follow the installation file to build llvm from source and follow along. 
