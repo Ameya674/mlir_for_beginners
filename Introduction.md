@@ -149,7 +149,6 @@ graph TD
   toy_test["Toy"]
 
   llvm_project --> mlir
-  mlir --> examples
 
   subgraph mlir_box[ ]
     direction TB
@@ -189,7 +188,6 @@ graph TD
     Examples
   end
 
-  mlir --> test
   test --> test_box
   test_box --> toy_test
   toy_test --> toy_test_box
