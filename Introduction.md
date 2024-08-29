@@ -139,7 +139,7 @@ graph TD
 ## Toy Tutorial
 
 This tutorial runs through the implementation of a basic toy language on top of MLIR. 
-
+```mermaid
 graph TD
   llvm_project["llvm_project"]
   mlir["mlir"]
@@ -171,3 +171,4 @@ graph TD
   mlir --> include
   mlir --> tools
   mlir --> utils
+```
