@@ -182,6 +182,16 @@ graph TD
   toy["toy"]
 
   examples --> toy
+
+  Ch1["Ch1"]
+  Ch2["Ch2"]
+  Ch3["Ch3"]
+  Ch4["Ch4"]
+  Ch5["Ch5"]
+  Ch6["Ch6"]
+  Ch7["Ch7"]
+  cmakelist.txt["CMakeLists.txt"]
+  readme.md["README.md"]
   
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
