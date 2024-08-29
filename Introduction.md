@@ -227,6 +227,22 @@ graph TD
   Toy --> Toy_Ch6
   Toy --> Toy_Ch7
 
+  toyc-ch1["toyc-ch1"]
+  toyc-ch2["toyc-ch2"]
+  toyc-ch3["toyc-ch3"]
+  toyc-ch4["toyc-ch4"]
+  toyc-ch5["toyc-ch5"]
+  toyc-ch6["toyc-ch6"]
+  toyc-ch7["toyc-ch7"]
+
+  bin --> toyc-ch1
+  bin --> toyc-ch2
+  bin --> toyc-ch3
+  bin --> toyc-ch4
+  bin --> toyc-ch5
+  bin --> toyc-ch6
+  bin --> toyc-ch7
+
   classDef default fill:#fff,stroke:#000,stroke-width:2px;
   class mlir_box default;
   class toy_examples_box default;
