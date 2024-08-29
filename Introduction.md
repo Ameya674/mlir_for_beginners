@@ -165,7 +165,17 @@ graph TD
     utils
   end
 
-  mlir --> mlir_box
+  mlir --> benchmark
+  mlir --> cmake
+  mlir --> examples
+  mlir --> lib
+  mlir --> python
+  mlir --> test
+  mlir --> unittests
+  mlir --> docs
+  mlir --> include
+  mlir --> tools
+  mlir --> utils 
 
   subgraph toy_examples_box[ ]
     direction TB
