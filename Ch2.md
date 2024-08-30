@@ -31,10 +31,14 @@ graph TD
   AST.h["AST.h"]
   Lexer.h["Lexer.h"]
   Parser.h["Parser.h"]
+  MLIRGen.h["MLIRGen.h"]
+  Ops.td["Ops.td"]
 
   toy --> AST.h
   toy --> Lexer.h
   toy --> Parser.h
+  toy --> MLIRGen.h
+  toy --> Ops.td
 
   Dialect.cpp["Dialect.cpp"] 
   MLIRGen.cpp["MLIRGen.cpp"] 
@@ -47,9 +51,11 @@ graph TD
   class mlir yellow
   class Dialect.cpp yellow
   class MLIRGen.cpp yellow
+  class MLIRGen.h yellow
+  class Ops.td yellow
 ```
 
-**toyc.cpp -** The entry point for the compiler. Takes the file as input and calls the function to dump the AST present in the AST.h file. 
+**mlir -** This repo contains the 
 
 **AST.h -** Calls the Lexer.h and Parser.h files to convert the source code into the AST.
 
