@@ -170,7 +170,7 @@ graph LR
   tools_mlir_examples_toy_ChX_include_toy --> Dialect.h.inc.d
   tools_mlir_examples_toy_ChX_include_toy --> Ops.cpp.inc
   tools_mlir_examples_toy_ChX_include_toy --> Ops.cpp.inc.d
-  tools_mlir_examples_toy_ChX_include_toy --> Ops.h.inc.d
+  tools_mlir_examples_toy_ChX_include_toy --> Ops.h.inc
   tools_mlir_examples_toy_ChX_include_toy --> Ops.h.inc.d
 
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
