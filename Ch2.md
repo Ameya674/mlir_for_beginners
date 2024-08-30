@@ -131,7 +131,7 @@ public:
 #### The Dialect.cpp.inc file can be found in the given directory
 
 ```mermaid
-graph TD
+graph LR
   llvm_project["llvm_project"]
   build["build"]
 
@@ -147,7 +147,14 @@ graph TD
   tools_mlir_examples_toy_ChX["ChX"]
   tools_mlir_examples_toy_ChX_include["include"]
   tools_mlir_examples_toy_ChX_include_toy["toy"]
-  tools_mlir_examples_toy_ChX_include_toy_include_files["include_files"]
+  Dialect.cpp.inc.d["Dialect.cpp.inc.d"]
+  Ops.cpp.inc["Ops.cpp.inc"]
+  Ops.h.inc.d["Ops.h.inc.d"]
+  Dialect.h.inc["Dialect.h.inc"]
+  Ops.cpp.inc.d["Ops.cpp.inc.d"]
+  Dialect.cpp.inc["Dialect.cpp.inc"]
+  Dialect.h.inc.d["Dialect.h.inc.d"]
+  Ops.h.inc["Ops.h.inc"]
 
   build_tools --> tools_mlir
   tools_mlir --> tools_mlir_examples
@@ -155,10 +162,24 @@ graph TD
   tools_mlir_examples_toy --> tools_mlir_examples_toy_ChX
   tools_mlir_examples_toy_ChX --> tools_mlir_examples_toy_ChX_include
   tools_mlir_examples_toy_ChX_include --> tools_mlir_examples_toy_ChX_include_toy
-  tools_mlir_examples_toy_ChX_include_toy --> tools_mlir_examples_toy_ChX_include_toy_include_files
+  tools_mlir_examples_toy_ChX_include_toy --> Dialect.cpp.inc
+  tools_mlir_examples_toy_ChX_include_toy --> Dialect.cpp.inc.d
+  tools_mlir_examples_toy_ChX_include_toy --> Dialect.h.inc
+  tools_mlir_examples_toy_ChX_include_toy --> Dialect.h.inc.d
+  tools_mlir_examples_toy_ChX_include_toy --> Opps.cpp.inc
+  tools_mlir_examples_toy_ChX_include_toy --> Opps.cpp.inc.d
+  tools_mlir_examples_toy_ChX_include_toy --> Opps.h.inc.d
+  tools_mlir_examples_toy_ChX_include_toy --> Opps.h.inc.d
 
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
-  
+  class Dialect.h.inc yellow
+  class Dialect.h.inc.d yellow
+  class Dialect.cpp.inc yellow
+  class Dialect.cpp.inc.d yellow
+  class Opps.h.inc yellow
+  class Opps.h.inc.d yellow
+  class Opps.cpp.inc yellow
+  class Opps.cpp.inc.d yellow
 ```
 
 #### The AST looks like this
