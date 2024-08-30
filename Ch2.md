@@ -106,7 +106,7 @@ def Toy_Dialect : Dialect {
 <path_to_mlir_tblgen> -gen-dialect-decls <path_to_Ops.td> -I <mlir/include>
 ```
 
-#### This generates the Dialect.cpp.inc file among other include files which contains the c++ declaration of the dialect.
+#### This generates the Dialect.h.inc file among other include files which contains the c++ declaration of the dialect.
 
 ```bash
 /// This is the definition of the Toy dialect. A dialect inherits from
@@ -128,7 +128,7 @@ public:
 
 
 
-#### The Dialect.cpp.inc and other include files can be found in the given directory
+#### The Dialect.h.inc and other include files can be found in the given directory
 
 ```mermaid
 graph LR
