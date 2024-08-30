@@ -126,10 +126,39 @@ public:
 };
 ```
 
-#### The source code in the ast.toy file is converted into its AST using the given command 
 
-```bash
-<path_to_toyc-ch1> <path_to_ast.toy> -emit=ast
+
+#### The Dialect.cpp.inc file can be found in the given directory
+
+```mermaid
+graph TD
+  llvm_project["llvm_project"]
+  build["build"]
+
+  llvm_project --> build
+
+  build_tools["tools"]
+
+  build --> build_tools
+
+  tools_mlir["mlir"]
+  tools_mlir_examples["examples"]
+  tools_mlir_examples_toy["toy"]
+  tools_mlir_examples_toy_ChX["ChX"]
+  tools_mlir_examples_toy_ChX_include["include"]
+  tools_mlir_examples_toy_ChX_include_toy["toy"]
+  tools_mlir_examples_toy_ChX_include_toy_include_files["include_files"]
+
+  build_tools --> tools_mlir
+  tools_mlir --> tools_mlir_examples
+  tools_mlir_examples --> tools_mlir_examples_toy
+  tools_mlir_examples_toy --> tools_mlir_examples_toy_ChX
+  tools_mlir_examples_toy_ChX --> tools_mlir_examples_toy_ChX_include
+  tools_mlir_examples_toy_ChX_include --> tools_mlir_examples_toy_ChX_include_toy
+  tools_mlir_examples_toy_ChX_include_toy --> tools_mlir_examples_toy_ChX_include_toy_include_files
+
+  classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
+  
 ```
 
 #### The AST looks like this
