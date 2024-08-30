@@ -152,10 +152,10 @@ graph LR
   Dialect.cpp.inc.d["Dialect.cpp.inc.d"]
   Dialect.h.inc["Dialect.h.inc"]
   Dialect.h.inc.d["Dialect.h.inc.d"]
-  Ops.cpp.inc["Ops.cpp.inc"]
-  Ops.cpp.inc.d["Ops.cpp.inc.d"]
-  Ops.h.inc["Ops.h.inc"]
-  Ops.h.inc.d["Ops.h.inc.d"]
+  Opps.cpp.inc["Ops.cpp.inc"]
+  Opps.cpp.inc.d["Ops.cpp.inc.d"]
+  Opps.h.inc["Ops.h.inc"]
+  Opps.h.inc.d["Ops.h.inc.d"]
 
   build_tools --> tools_mlir
   tools_mlir --> tools_mlir_examples
@@ -174,7 +174,8 @@ graph LR
   tools_mlir_examples_toy_ChX_include_toy --> Opps.h.inc.d
 
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
-  class Dialect.h.inc yellow
+
+  class Dialect.h.inc yellow 
   class Dialect.h.inc.d yellow
   class Dialect.cpp.inc yellow
   class Dialect.cpp.inc.d yellow
