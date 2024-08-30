@@ -8,7 +8,7 @@ This chapter deals optimizing MLIR.
 
 ```mermaid
 graph TD
-  ch2_compiler["llvm_project/mlir/examples/toy/Ch2"]
+  ch2_compiler["llvm_project/mlir/examples/toy/Ch3"]
 
   toyc.cpp["toyc.cpp"]
   include["include"]
