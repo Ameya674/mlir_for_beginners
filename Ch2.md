@@ -147,14 +147,15 @@ graph LR
   tools_mlir_examples_toy_ChX["ChX"]
   tools_mlir_examples_toy_ChX_include["include"]
   tools_mlir_examples_toy_ChX_include_toy["toy"]
-  Dialect.cpp.inc.d["Dialect.cpp.inc.d"]
-  Ops.cpp.inc["Ops.cpp.inc"]
-  Ops.h.inc.d["Ops.h.inc.d"]
-  Dialect.h.inc["Dialect.h.inc"]
-  Ops.cpp.inc.d["Ops.cpp.inc.d"]
+
   Dialect.cpp.inc["Dialect.cpp.inc"]
+  Dialect.cpp.inc.d["Dialect.cpp.inc.d"]
+  Dialect.h.inc["Dialect.h.inc"]
   Dialect.h.inc.d["Dialect.h.inc.d"]
+  Ops.cpp.inc["Ops.cpp.inc"]
+  Ops.cpp.inc.d["Ops.cpp.inc.d"]
   Ops.h.inc["Ops.h.inc"]
+  Ops.h.inc.d["Ops.h.inc.d"]
 
   build_tools --> tools_mlir
   tools_mlir --> tools_mlir_examples
@@ -162,6 +163,7 @@ graph LR
   tools_mlir_examples_toy --> tools_mlir_examples_toy_ChX
   tools_mlir_examples_toy_ChX --> tools_mlir_examples_toy_ChX_include
   tools_mlir_examples_toy_ChX_include --> tools_mlir_examples_toy_ChX_include_toy
+
   tools_mlir_examples_toy_ChX_include_toy --> Dialect.cpp.inc
   tools_mlir_examples_toy_ChX_include_toy --> Dialect.cpp.inc.d
   tools_mlir_examples_toy_ChX_include_toy --> Dialect.h.inc
