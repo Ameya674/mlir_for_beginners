@@ -45,6 +45,8 @@ graph TD
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
 
   class mlir yellow
+  class Dialect.cpp yellow
+  class MLIRGen.cpp yellow
 ```
 
 **toyc.cpp -** The entry point for the compiler. Takes the file as input and calls the function to dump the AST present in the AST.h file. 
