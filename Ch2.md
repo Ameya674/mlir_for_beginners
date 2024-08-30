@@ -11,7 +11,7 @@ graph TD
   toyc.cpp["toyc.cpp"]
   include["include"]
   parser["parser"]
-  mlir["mlir"] yellow
+  mlir["mlir"] 
   cmakelists.txt["CMakeLists.txt"]
 
   ch2_compiler --> toyc.cpp
@@ -36,13 +36,15 @@ graph TD
   toy --> Lexer.h
   toy --> Parser.h
 
-  Dialect.cpp["Dialect.cpp"] yellow
-  MLIRGen.cpp["MLIRGen.cpp"] yellow
+  Dialect.cpp["Dialect.cpp"] 
+  MLIRGen.cpp["MLIRGen.cpp"] 
 
   mlir --> Dialect.cpp
   mlir --> MLIRGen.cpp
 
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
+
+  class mlir yellow
 ```
 
 **toyc.cpp -** The entry point for the compiler. Takes the file as input and calls the function to dump the AST present in the AST.h file. 
