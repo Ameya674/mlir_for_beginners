@@ -100,7 +100,7 @@ def Toy_Dialect : Dialect {
 }
 ```
 
-##### The mlir-tblgen command generates include files for the dialect with the above code. 
+##### The mlir-tblgen command generates declaration in the include files for the dialect with the above code. 
 
 ```bash
 <path_to_mlir_tblgen> -gen-dialect-decls <path_to_Ops.td> -I <mlir/include>
@@ -176,51 +176,103 @@ graph LR
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
 ```
 
-#### The AST looks like this
+#### Defining Operations in the dialect
+
+Operations have to be defined in the Ops.td file and the Dialect.cpp file. The Dialect.cpp file will contain the code and logic of the operation and the Ops.td will contain the declaration which will generate the include files. 
+
+##### Subtraction function for Ops.td
 
 ```bash
-Module:
-  Function 
-    Proto 'multiply_transpose' @test/Examples/Toy/Ch1/ast.toy:4:1
-    Params: [a, b]
-    Block {
-      Return
-        BinOp: * @test/Examples/Toy/Ch1/ast.toy:5:25
-          Call 'transpose' [ @test/Examples/Toy/Ch1/ast.toy:5:10
-            var: a @test/Examples/Toy/Ch1/ast.toy:5:20
-          ]
-          Call 'transpose' [ @test/Examples/Toy/Ch1/ast.toy:5:25
-            var: b @test/Examples/Toy/Ch1/ast.toy:5:35
-          ]
-    } // Block
-  Function 
-    Proto 'main' @test/Examples/Toy/Ch1/ast.toy:8:1
-    Params: []
-    Block {
-      VarDecl a<> @test/Examples/Toy/Ch1/ast.toy:11:3
-        Literal: <2, 3>[ <3>[ 1.000000e+00, 2.000000e+00, 3.000000e+00], <3>[ 4.000000e+00, 5.000000e+00, 6.000000e+00]] @test/Examples/Toy/Ch1/ast.toy:11:11
-      VarDecl b<2, 3> @test/Examples/Toy/Ch1/ast.toy:15:3
-        Literal: <6>[ 1.000000e+00, 2.000000e+00, 3.000000e+00, 4.000000e+00, 5.000000e+00, 6.000000e+00] @test/Examples/Toy/Ch1/ast.toy:15:17
-      VarDecl c<> @test/Examples/Toy/Ch1/ast.toy:19:3
-        Call 'multiply_transpose' [ @test/Examples/Toy/Ch1/ast.toy:19:11
-          var: a @test/Examples/Toy/Ch1/ast.toy:19:30
-          var: b @test/Examples/Toy/Ch1/ast.toy:19:33
-        ]
-      VarDecl d<> @test/Examples/Toy/Ch1/ast.toy:22:3
-        Call 'multiply_transpose' [ @test/Examples/Toy/Ch1/ast.toy:22:11
-          var: b @test/Examples/Toy/Ch1/ast.toy:22:30
-          var: a @test/Examples/Toy/Ch1/ast.toy:22:33
-        ]
-      VarDecl e<> @test/Examples/Toy/Ch1/ast.toy:25:3
-        Call 'multiply_transpose' [ @test/Examples/Toy/Ch1/ast.toy:25:11
-          var: c @test/Examples/Toy/Ch1/ast.toy:25:30
-          var: d @test/Examples/Toy/Ch1/ast.toy:25:33
-        ]
-      VarDecl f<> @test/Examples/Toy/Ch1/ast.toy:28:3
-        Call 'multiply_transpose' [ @test/Examples/Toy/Ch1/ast.toy:28:11
-          var: a @test/Examples/Toy/Ch1/ast.toy:28:30
-          var: c @test/Examples/Toy/Ch1/ast.toy:28:33
-        ]
-    } // Block
+def SubOp : Toy_Op<"sub"> {
+  let summary = "element-wise subtraction operation";
+  let description = [{
+    The "sub" operation performs element-wise subtraction between two tensors.
+    The shapes of the tensor operands are expected to match.
+  }];
+
+  let arguments = (ins F64Tensor:$lhs, F64Tensor:$rhs);
+  let results = (outs F64Tensor);
+
+  // Indicate that the operation has a custom parser and printer method.
+  // let hasCustomAssemblyFormat = 1;
+
+  // Allow building an AddOp with from the two input operands.
+  let builders = [
+    OpBuilder<(ins "Value":$lhs, "Value":$rhs)>
+  ];
+}
 ```
-The next chapter demonstrates how to convert the AST to MLIR.
+
+##### Subtraction function for Dialect.cpp
+
+```bash
+void SubOp::build(mlir::OpBuilder &builder, mlir::OperationState &state,
+                  mlir::Value lhs, mlir::Value rhs) {
+  state.addTypes(UnrankedTensorType::get(builder.getF64Type()));
+  state.addOperands({lhs, rhs});
+}
+
+mlir::ParseResult SubOp::parse(mlir::OpAsmParser &parser,
+                               mlir::OperationState &result) {
+  return parseBinaryOp(parser, result);
+}
+
+void SubOp::print(mlir::OpAsmPrinter &p) { printBinaryOp(p, *this); }
+```
+
+You can add as many operations as you want in the dialect. 
+
+##### The mlir-tblgen command generates declaration in the include files for the operations with the above code. 
+
+```bash
+<path_to_mlir_tblgen> -gen-op-decls <path_to_Ops.td> -I <mlir/include>
+```
+
+#### After creating the dialect and its operations we can lower the AST to MLIR.
+
+```bash
+# User defined generic function that operates on unknown shaped arguments.
+def multiply_transpose(a, b) {
+  return transpose(a) * transpose(b);
+}
+
+def main() {
+  var a<2, 3> = [[1, 2, 3], [4, 5, 6]];
+  var b<2, 3> = [1, 2, 3, 4, 5, 6];
+  var c = multiply_transpose(a, b);
+  var d = multiply_transpose(b, a);
+  print(d);
+}
+```
+
+##### This high level code is provided in codegen.toy and is converted to MLIR using the following command
+
+```bash
+<path_to_toyc-ch2> <path_to_codegen.toy> -emit=mlir -mlir-print-debuginfo>
+```
+
+#### The MLIR representation looks like this
+
+```bash
+module {
+  "toy.func"() ({
+  ^bb0(%arg0: tensor<*xf64> loc("test/Examples/Toy/Ch2/codegen.toy":4:1), %arg1: tensor<*xf64> loc("test/Examples/Toy/Ch2/codegen.toy":4:1)):
+    %0 = "toy.transpose"(%arg0) : (tensor<*xf64>) -> tensor<*xf64> loc("test/Examples/Toy/Ch2/codegen.toy":5:10)
+    %1 = "toy.transpose"(%arg1) : (tensor<*xf64>) -> tensor<*xf64> loc("test/Examples/Toy/Ch2/codegen.toy":5:25)
+    %2 = "toy.mul"(%0, %1) : (tensor<*xf64>, tensor<*xf64>) -> tensor<*xf64> loc("test/Examples/Toy/Ch2/codegen.toy":5:25)
+    "toy.return"(%2) : (tensor<*xf64>) -> () loc("test/Examples/Toy/Ch2/codegen.toy":5:3)
+  }) {sym_name = "multiply_transpose", type = (tensor<*xf64>, tensor<*xf64>) -> tensor<*xf64>} : () -> () loc("test/Examples/Toy/Ch2/codegen.toy":4:1)
+  "toy.func"() ({
+    %0 = "toy.constant"() {value = dense<[[1.000000e+00, 2.000000e+00, 3.000000e+00], [4.000000e+00, 5.000000e+00, 6.000000e+00]]> : tensor<2x3xf64>} : () -> tensor<2x3xf64> loc("test/Examples/Toy/Ch2/codegen.toy":9:17)
+    %1 = "toy.reshape"(%0) : (tensor<2x3xf64>) -> tensor<2x3xf64> loc("test/Examples/Toy/Ch2/codegen.toy":9:3)
+    %2 = "toy.constant"() {value = dense<[1.000000e+00, 2.000000e+00, 3.000000e+00, 4.000000e+00, 5.000000e+00, 6.000000e+00]> : tensor<6xf64>} : () -> tensor<6xf64> loc("test/Examples/Toy/Ch2/codegen.toy":10:17)
+    %3 = "toy.reshape"(%2) : (tensor<6xf64>) -> tensor<2x3xf64> loc("test/Examples/Toy/Ch2/codegen.toy":10:3)
+    %4 = "toy.generic_call"(%1, %3) {callee = @multiply_transpose} : (tensor<2x3xf64>, tensor<2x3xf64>) -> tensor<*xf64> loc("test/Examples/Toy/Ch2/codegen.toy":11:11)
+    %5 = "toy.generic_call"(%3, %1) {callee = @multiply_transpose} : (tensor<2x3xf64>, tensor<2x3xf64>) -> tensor<*xf64> loc("test/Examples/Toy/Ch2/codegen.toy":12:11)
+    "toy.print"(%5) : (tensor<*xf64>) -> () loc("test/Examples/Toy/Ch2/codegen.toy":13:3)
+    "toy.return"() : () -> () loc("test/Examples/Toy/Ch2/codegen.toy":8:1)
+  }) {sym_name = "main", type = () -> ()} : () -> () loc("test/Examples/Toy/Ch2/codegen.toy":8:1)
+} loc(unknown)
+```
+
+The next chapter deals with optimizing MLIR.
