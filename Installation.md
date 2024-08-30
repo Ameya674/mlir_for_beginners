@@ -32,4 +32,4 @@ cmake -G Ninja ../llvm \
 cmake --build . --target check-mlir
 ```
 
-This successfully builds llvm which is ready for use.
+This successfully builds mlir with llvm which is ready for use.
