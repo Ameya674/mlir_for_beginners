@@ -86,12 +86,6 @@ toy.func @transpose_transpose(%arg0: tensor<*xf64>) -> tensor<*xf64> {
 }
 ```
 
-##### The mlir-tblgen command generates declaration in the include files for the dialect with the above code. 
-
-```bash
-<path_to_mlir_tblgen> -gen-dialect-decls <path_to_Ops.td> -I <mlir/include>
-```
-
 #### We can optimize this code with the help of the following rewrite which is present in ToyCombine.cpp
 
 ```bash
