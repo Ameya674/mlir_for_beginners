@@ -55,15 +55,15 @@ graph TD
   class Ops.td yellow
 ```
 
-**mlir -** This repo contains the 
+**mlir -** This repo contains the necessary files to generate mlir.
 
-**AST.h -** Calls the Lexer.h and Parser.h files to convert the source code into the AST.
+**Dialect.cpp -** This is where we define the language and write the logic for the operations in c++. 
 
-**AST.cpp -** Contains the code for the AST.h file.
+**Ops.td -** In this tablegen file we have define the dialect and define the operations declaratively. The real use of the tablegen files is to generate include files.
 
-**Lexer.h -** Converts the source code into tokens.
+**MLIRGen.cpp -** Contains source code for converting the AST to MLIR.
 
-**Parser.h -** Uses the Recursive Descent Parser to create the AST.
+**MLIRGen.h -** Header file for MLIRGen.cpp.
 
 #### Code instance of the toy language 
 
