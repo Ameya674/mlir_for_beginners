@@ -128,7 +128,7 @@ public:
 
 
 
-#### The Dialect.cpp.inc file can be found in the given directory
+#### The Dialect.cpp.inc and other include files can be found in the given directory
 
 ```mermaid
 graph LR
@@ -174,8 +174,6 @@ graph LR
   tools_mlir_examples_toy_ChX_include_toy --> Opps.h.inc.d
 
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
-
-  class Dialect.h.inc, Dialect.h.inc.d, Dialect.cpp.inc, Dialect.cpp.inc.d, Opps.h.inc, Opps.h.inc.d, Opps.cpp.inc, Opps.cpp.inc.d yellow
 ```
 
 #### The AST looks like this
