@@ -1,4 +1,4 @@
-# Chapter 1 - AST to MLIR
+# Chapter 2 - AST to MLIR
 
 In order to emit MLIR we need to define our toy dialect. A dialect is basically a namespace in the repo with a list of operations inside it. In the dialect we need to define the operations into which the high level language will get converted into. 
 
@@ -152,10 +152,10 @@ graph LR
   Dialect.cpp.inc.d["Dialect.cpp.inc.d"]
   Dialect.h.inc["Dialect.h.inc"]
   Dialect.h.inc.d["Dialect.h.inc.d"]
-  Opps.cpp.inc["Ops.cpp.inc"]
-  Opps.cpp.inc.d["Ops.cpp.inc.d"]
-  Opps.h.inc["Ops.h.inc"]
-  Opps.h.inc.d["Ops.h.inc.d"]
+  Ops.cpp.inc["Ops.cpp.inc"]
+  Ops.cpp.inc.d["Ops.cpp.inc.d"]
+  Ops.h.inc["Ops.h.inc"]
+  Ops.h.inc.d["Ops.h.inc.d"]
 
   build_tools --> tools_mlir
   tools_mlir --> tools_mlir_examples
@@ -168,10 +168,10 @@ graph LR
   tools_mlir_examples_toy_ChX_include_toy --> Dialect.cpp.inc.d
   tools_mlir_examples_toy_ChX_include_toy --> Dialect.h.inc
   tools_mlir_examples_toy_ChX_include_toy --> Dialect.h.inc.d
-  tools_mlir_examples_toy_ChX_include_toy --> Opps.cpp.inc
-  tools_mlir_examples_toy_ChX_include_toy --> Opps.cpp.inc.d
-  tools_mlir_examples_toy_ChX_include_toy --> Opps.h.inc.d
-  tools_mlir_examples_toy_ChX_include_toy --> Opps.h.inc.d
+  tools_mlir_examples_toy_ChX_include_toy --> Ops.cpp.inc
+  tools_mlir_examples_toy_ChX_include_toy --> Ops.cpp.inc.d
+  tools_mlir_examples_toy_ChX_include_toy --> Ops.h.inc.d
+  tools_mlir_examples_toy_ChX_include_toy --> Ops.h.inc.d
 
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
 ```
