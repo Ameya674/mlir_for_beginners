@@ -175,14 +175,7 @@ graph LR
 
   classDef yellow fill:#ff0,stroke:#333,stroke-width:2px,color:#000;
 
-  class Dialect.h.inc yellow 
-  class Dialect.h.inc.d yellow
-  class Dialect.cpp.inc yellow
-  class Dialect.cpp.inc.d yellow
-  class Opps.h.inc yellow
-  class Opps.h.inc.d yellow
-  class Opps.cpp.inc yellow
-  class Opps.cpp.inc.d yellow
+  class Dialect.h.inc, Dialect.h.inc.d, Dialect.cpp.inc, Dialect.cpp.inc.d, Opps.h.inc, Opps.h.inc.d, Opps.cpp.inc, Opps.cpp.inc.d yellow
 ```
 
 #### The AST looks like this
