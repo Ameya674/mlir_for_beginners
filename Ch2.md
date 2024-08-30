@@ -2,6 +2,8 @@
 
 In order to emit MLIR we need to define our toy dialect. A dialect is basically a namespace in the repo with a list of operations inside it. In the dialect we need to define the operations into which the high level language will get converted into. 
 
+### Disclaimer - No need to write code its already written. Just run the commands to observe the output. 
+
 ## File Structure of Ch2 compiler
 
 ```mermaid
@@ -65,48 +67,63 @@ graph TD
 
 **MLIRGen.h -** Header file for MLIRGen.cpp.
 
-#### Code instance of the toy language 
+#### Defining a dialect
+
+To interface with MLIR, the new dialect will model the structure of the toy language and make it easy for high level analysis and transformations. 
+
+##### Defining with Tablegen
+
+The Ops.td file contains the following code already but we'll have to write it while making our own compilers.
 
 ```bash
-# User defined generic function that operates on unknown shaped arguments.
-def multiply_transpose(a, b) {
-  return transpose(a) * transpose(b);
-}
+// Provide a definition of the 'toy' dialect in the ODS framework so that we
+// can define our operations.
+def Toy_Dialect : Dialect {
+  // The namespace of our dialect, this corresponds 1-1 with the string we
+  // provided in `ToyDialect::getDialectNamespace`.
+  let name = "toy";
 
-def main() {
-  # Define a variable `a` with shape <2, 3>, initialized with the literal value.
-  var a = [[1, 2, 3], [4, 5, 6]];
-  var b<2, 3> = [1, 2, 3, 4, 5, 6];
+  // A short one-line summary of our dialect.
+  let summary = "A high-level dialect for analyzing and optimizing the "
+                "Toy language";
 
-  # This call will specialize `multiply_transpose` with <2, 3> for both
-  # arguments and deduce a return type of <3, 2> in initialization of `c`.
-  var c = multiply_transpose(a, b);
+  // A much longer description of our dialect.
+  let description = [{
+    The Toy language is a tensor-based language that allows you to define
+    functions, perform some math computation, and print results. This dialect
+    provides a representation of the language that is amenable to analysis and
+    optimization.
+  }];
 
-  # A second call to `multiply_transpose` with <2, 3> for both arguments will
-  # reuse the previously specialized and inferred version and return <3, 2>.
-  var d = multiply_transpose(b, a);
-
-  # A new call with <3, 2> (instead of <2, 3>) for both dimensions will
-  # trigger another specialization of `multiply_transpose`.
-  var e = multiply_transpose(c, d);
-
-  # Finally, calling into `multiply_transpose` with incompatible shapes
-  # (<2, 3> and <3, 2>) will trigger a shape inference error.
-  var f = multiply_transpose(a, c);
+  // The C++ namespace that the dialect class definition resides in.
+  let cppNamespace = "toy";
 }
 ```
 
-#### This code snippet is  provided in the ast.toy file 
+##### The mlir-tblgen command generates include files for the dialect with the above code. 
 
-```mermaid
-graph TD
-  llvm_project/mlir/test/Examples/Toy/Ch1["llvm_project/mlir/test/Examples/Toy/Ch1"]
+```bash
+<path_to_mlir_tblgen> -gen-dialect-decls <path_to_Ops.td> -I <mlir/include>
+```
 
-  ast.toy["ast.toy"]
-  empty.toy["empty.toy"]
+#### This generates the Dialect.cpp.inc file among other include files which contains the c++ declaration of the dialect.
 
-  llvm_project/mlir/test/Examples/Toy/Ch1 --> ast.toy
-  llvm_project/mlir/test/Examples/Toy/Ch1 --> empty.toy
+```bash
+/// This is the definition of the Toy dialect. A dialect inherits from
+/// mlir::Dialect and registers custom attributes, operations, and types. It can
+/// also override virtual methods to change some general behavior, which will be
+/// demonstrated in later chapters of the tutorial.
+class ToyDialect : public mlir::Dialect {
+public:
+  explicit ToyDialect(mlir::MLIRContext *ctx);
+
+  /// Provide a utility accessor to the dialect namespace.
+  static llvm::StringRef getDialectNamespace() { return "toy"; }
+
+  /// An initializer called from the constructor of ToyDialect that is used to
+  /// register attributes, operations, types, and more within the Toy dialect.
+  void initialize();
+};
 ```
 
 #### The source code in the ast.toy file is converted into its AST using the given command 
